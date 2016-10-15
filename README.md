@@ -1,4 +1,4 @@
-EADJ HS15
+EADJ HS16
 =========
 
 [Weiterführende Informationen, Code Beispiele und Lösungen finden Sie im Wiki](https://github.com/simasch/eadjhs16/wiki)
