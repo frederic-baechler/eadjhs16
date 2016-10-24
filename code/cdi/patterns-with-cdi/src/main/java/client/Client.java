@@ -1,5 +1,6 @@
 package client;
 
+import event.LoginEvent;
 import java.util.logging.Logger;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -15,5 +16,9 @@ public class Client {
 
     public void main(@Observes ContainerInitialized event) {
         LOGGER.info(service.getCountryName("CH"));
+    }
+    
+    public void observer(@Observes LoginEvent loginEvent) {
+        LOGGER.info("LoginEvent caught");
     }
 }

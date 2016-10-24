@@ -1,5 +1,6 @@
 package service;
 
+import event.LoginEvent;
 import interceptor.MethodTrace;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +9,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.event.Event;
 import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
 
 /**
  * Proxy to implement remote call to the country service
@@ -22,6 +25,9 @@ public class CountryServiceProxy implements CountryService {
 
     private String dsServerUrl = "http://eadj-simas.rhcloud.com/country/";
 
+    @Inject
+    private Event<LoginEvent> event;
+
     public CountryServiceProxy() {
 
     }
@@ -34,6 +40,8 @@ public class CountryServiceProxy implements CountryService {
     public String getCountryName(String countryCode) {
         LOGGER.info("REMOTE");
 
+        event.fire(new LoginEvent());
+        
         try {
             URL url = new URL(dsServerUrl + countryCode);
             return this.convertStreamToString((InputStream) url.getContent());
