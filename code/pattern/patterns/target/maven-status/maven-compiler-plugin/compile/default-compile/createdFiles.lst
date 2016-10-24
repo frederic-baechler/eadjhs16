@@ -1,0 +1,7 @@
+service\CountryService.class
+client\Schritt2.class
+service\CountryServiceLocal.class
+client\Schritt1.class
+service\CountryServiceFactory.class
+service\CountryServiceProxy.class
+client\Schritt3.class
