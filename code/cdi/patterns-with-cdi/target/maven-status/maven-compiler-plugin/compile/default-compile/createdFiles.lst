@@ -1,6 +1,0 @@
-client\Client.class
-service\CountryService.class
-interceptor\MethodTraceInterceptor.class
-service\CountryServiceLocal.class
-interceptor\MethodTrace.class
-service\CountryServiceProxy.class
