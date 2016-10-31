@@ -1,17 +1,15 @@
-package ch.bfh.sws.eadj;
+package hr;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
-public class HrTest {
+public abstract class AbstractTest {
 
-    private static EntityManagerFactory emf;
-    private static EntityManager em;
+    protected static EntityManagerFactory emf;
+    protected static EntityManager em;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -27,11 +25,6 @@ public class HrTest {
         if (emf != null) {
             emf.close();
         }
-    }
-
-    @Test
-    public void createEmployee() {
-        assertTrue(true);
     }
 
 }
