@@ -12,4 +12,17 @@ public class RelationshipTest extends AbstractTest {
         assertTrue(employee.getPhones().size() > 0);
     }
 
+    @Test
+    public void persistAfterRemove() {
+        Employee employee = new Employee();
+        em.persist(employee);
+        assertTrue(em.contains(employee));
+
+        em.remove(employee);
+        assertFalse(em.contains(employee));
+
+        em.persist(employee);
+        assertTrue(em.contains(employee));
+    }
+
 }
