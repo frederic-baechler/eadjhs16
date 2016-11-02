@@ -1,5 +1,6 @@
 package hr;
 
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -9,6 +10,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 
 public abstract class AbstractTest {
+
+    protected final static Logger LOGGER = Logger.getLogger(AbstractTest.class.getName());
 
     protected static EntityManagerFactory emf;
     protected static EntityManager em;

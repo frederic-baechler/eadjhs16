@@ -1,21 +1,42 @@
 package hr;
 
+import hr.to.EmployeeTO;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SqlResultSetMapping;
 
+@NamedQueries({
+    @NamedQuery(name = Employee.FIND_BY_NAME, query = "select e from Employee e where e.name = :name"),
+    @NamedQuery(name = Employee.AVG, query = "select AVG(e.salary) from Employee e"),
+    @NamedQuery(name = "Employee.findByDepartmentName", query = "select e from Employee e where e.department.name = :departmentName")
+})
+@SqlResultSetMapping(name = "EmployeeTO",
+        classes = {@ConstructorResult(targetClass = EmployeeTO.class,
+                    columns = {@ColumnResult(name = "id"), @ColumnResult(name = "name")})}
+)
+@NamedEntityGraph(name = "includePhones", attributeNodes = {@NamedAttributeNode("phones")})
 @Entity
 public class Employee {
+
+    public final static String FIND_BY_NAME = "Employee.findByName";
+    public final static String AVG = "Employee.avg";
 
     @Id
     @GeneratedValue
